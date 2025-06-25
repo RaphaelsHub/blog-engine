@@ -1,6 +1,6 @@
-using BlogEngine.Contracts.Requests;
-using BlogEngine.Contracts.Responses;
 // using MediatR;
+using BlogEngine.Core.Contracts.Requests;
+using BlogEngine.Core.Contracts.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogEngine.Controllers;

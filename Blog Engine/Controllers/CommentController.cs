@@ -1,5 +1,6 @@
-using BlogEngine.Contracts.Requests;
-using BlogEngine.Contracts.Responses;
+using BlogEngine.Core.Contracts.Requests;
+using BlogEngine.Core.Contracts.Responses;
+
 // using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
