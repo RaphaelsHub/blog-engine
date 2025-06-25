@@ -1,4 +1,4 @@
-namespace BlogEngine.Contracts.Requests;
+namespace BlogEngine.Core.Contracts.Requests;
 
 public record AddCommentRequest(string PostId, string Author, string Text);
 

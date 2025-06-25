@@ -1,4 +1,4 @@
-namespace BlogEngine.Contracts.Requests;
+namespace BlogEngine.Core.Contracts.Requests;
 
 public record CreatePostRequest(string Title, string Content);
 
