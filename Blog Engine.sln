@@ -5,8 +5,6 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog Engine", "Blog Engine\Blog Engine.csproj", "{D444787E-50AA-497E-93DC-14A0759C0C9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog Engine.APP", "Blog Engine.APP\Blog Engine.APP.csproj", "{CE25C037-D71A-4DEB-8FA7-F7E9C7AD9A6C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog Engine.Core", "Blog Engine.Core\Blog Engine.Core.csproj", "{A103662C-1F3C-4182-87F0-0DE212BE0251}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog Engine.Infrastructure", "Blog Engine.Infrastructure\Blog Engine.Infrastructure.csproj", "{2BEB3E58-C7A8-4A29-848F-457962D8A9E6}"
