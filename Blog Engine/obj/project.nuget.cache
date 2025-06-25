@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "EXJ0Z60MKYs=",
+  "success": true,
+  "projectFilePath": "C:\\GitHub\\6. Blog Engine (Mongo + CQRS)\\Blog Engine\\Blog Engine.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\speke\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.7\\microsoft.aspnetcore.openapi.9.0.7.nupkg.sha512",
+    "C:\\Users\\speke\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
