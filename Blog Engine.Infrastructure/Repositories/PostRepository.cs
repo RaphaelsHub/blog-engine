@@ -1,36 +1,56 @@
 using BlogEngine.Application.Interfaces;
 using BlogEngine.Core.Entities;
+using MongoDB.Driver;
 
 namespace BlogEngine.Infrastructure.Repositories;
 
-public class PostRepository : IPostRepository
+public class PostRepository(IBlogDbContext blogDbContext) : IPostRepository
 {
-    public PostRepository()
+    private readonly IMongoCollection<Post> _posts = blogDbContext.Posts;
+
+    public async Task CreateAsync(Post post, CancellationToken cancellationToken)
     {
+        await _posts.InsertOneAsync(post, cancellationToken: cancellationToken);
     }
 
-    public Task CreateAsync(Post post, CancellationToken cancellationToken)
+    public async Task<bool> DeleteAsync(string id, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var result = await _posts.DeleteOneAsync(p => p.Id == id, cancellationToken);
+        return result.DeletedCount > 0;
     }
 
-    public Task<bool> DeleteAsync(string id, CancellationToken cancellationToken)
+    public async Task<List<Post>> GetAllAsync(CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var projection = Builders<Post>.Projection.Exclude(p => p.Comments);
+
+        return await _posts
+            .Find(_ => true)
+            .Project<Post>(projection)
+            .ToListAsync(cancellationToken);
     }
 
-    public Task<List<Post>> GetAllAsync(CancellationToken cancellationToken)
+    public async Task<Post?> GetByIdAsync(string id, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var projection = Builders<Post>.Projection.Exclude(p => p.Comments);
+
+        return await _posts
+            .Find(p => p.Id == id)
+            .Project<Post>(projection)
+            .FirstOrDefaultAsync(cancellationToken);
     }
 
-    public Task<Post?> GetByIdAsync(string id, CancellationToken cancellationToken)
+    public async Task<bool> UpdateAsync(string id, string title, string content, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
-    }
+        var update = Builders<Post>.Update
+            .Set(p => p.Title, title)
+            .Set(p => p.Content, content);
 
-    public Task<bool> UpdateAsync(string id, string title, string content, CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
+        var result = await _posts.UpdateOneAsync(
+            p => p.Id == id,
+            update,
+            cancellationToken: cancellationToken
+        );
+
+        return result.ModifiedCount > 0;
     }
 }
