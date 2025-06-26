@@ -1,3 +1,6 @@
 # Ignore build results
 obj/
 bin/
+
+# Ignore sensitive info
+**/appsettings.Development.json
