@@ -1,4 +1,4 @@
-using BlogEngine.Common.Mediatr;
+using BlogEngine.Application.Common.Mediator;
 using BlogEngine.Core.Contracts.Requests;
 
 namespace BlogEngine.Commnads;
