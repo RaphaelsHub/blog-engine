@@ -1,43 +1,41 @@
+using BlogEngine.Application.Common.Mediator;
 using BlogEngine.Core.Contracts.Requests;
 using BlogEngine.Core.Contracts.Responses;
-
-// using MediatR;
+using BlogEngine.Commnads;
+using BlogEngine.Queries;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogEngine.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class CommentsController : ControllerBase
+public class CommentsController(IMediator mediator) : ControllerBase
 {
-    // private readonly IMediator _mediator;
-    // public CommentsController(IMediator mediator) => _mediator = mediator;
-
     [HttpGet("{postId}")]
-    public async Task<ActionResult<List<CommentResponse>>> GetByPostId(string postId)
+    public async Task<ActionResult<List<CommentResponse>>> GetByPostId(string postId, CancellationToken cancellationToken)
     {
-        // TODO: реализовать
-        throw new NotImplementedException();
+        var result = await mediator.Send(new GetPostCommentsQuery(postId), cancellationToken);
+        return Ok(result);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Add([FromBody] AddCommentRequest request)
+    public async Task<IActionResult> Add([FromBody] AddCommentRequest request, CancellationToken cancellationToken)
     {
-        // TODO: реализовать
-        throw new NotImplementedException();
+        var success = await mediator.Send(new AddCommentCommand(request), cancellationToken);
+        return success ? Ok() : BadRequest("Failed to add comment.");
     }
 
     [HttpPut]
-    public async Task<IActionResult> Update([FromBody] UpdateCommentRequest request)
+    public async Task<IActionResult> Update([FromBody] UpdateCommentRequest request, CancellationToken cancellationToken)
     {
-        // TODO: реализовать
-        throw new NotImplementedException();
+        var success = await mediator.Send(new UpdateCommentCommand(request), cancellationToken);
+        return success ? Ok() : NotFound("Comment not found.");
     }
 
     [HttpDelete]
-    public async Task<IActionResult> Delete([FromBody] DeleteCommentRequest request)
+    public async Task<IActionResult> Delete([FromBody] DeleteCommentRequest request, CancellationToken cancellationToken)
     {
-        // TODO: реализовать
-        throw new NotImplementedException();
+        var success = await mediator.Send(new DeleteCommentCommand(request), cancellationToken);
+        return success ? Ok() : NotFound("Comment not found.");
     }
 }
