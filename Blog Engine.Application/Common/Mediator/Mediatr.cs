@@ -1,4 +1,4 @@
-namespace BlogEngine.Common.Mediatr;
+namespace BlogEngine.Application.Common.Mediator;
 
 public class Mediator : IMediator
 {
